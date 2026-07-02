@@ -3,31 +3,17 @@
 <head>
   <title>SBHS Certificate Verification</title>
   <style>
-    body {
-      font-family: Arial;
-      background: #eef2f7;
-      text-align: center;
-      padding: 40px;
-    }
-    .box {
-      background: white;
-      max-width: 650px;
-      margin: auto;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    h1 { color: #1e3a8a; }
-    .valid { color: green; font-size: 20px; font-weight: bold; }
-    .invalid { color: red; font-size: 20px; font-weight: bold; }
-    .info { text-align: left; margin-top: 20px; }
+    body { font-family: Arial; background:#eef2f7; text-align:center; padding:40px; }
+    .box { background:white; max-width:650px; margin:auto; padding:25px; border-radius:12px; }
+    .valid { color:green; font-size:22px; font-weight:bold; }
+    .invalid { color:red; font-size:22px; font-weight:bold; }
+    .info { text-align:left; margin-top:20px; }
   </style>
 </head>
 
 <body>
-
 <div class="box">
-  <h1>Certificate Verification System</h1>
+  <h1>Certificate Verification</h1>
   <div id="result"></div>
 </div>
 
@@ -38,35 +24,30 @@ const certs = {
   "SBHS-G7LAC-2026-003": "Theresa M. Decena",
   "SBHS-G7LAC-2026-004": "Joyce L. Abugan",
   "SBHS-G7LAC-2026-005": "Cherry D. Balona",
-  "SBHS-G7LAC-2026-006": "Jonalyn M. Capalungan",
+  "SBHS-G7LAC-2026-006": "Jonalyn S. Capalungan",
   "SBHS-G7LAC-2026-007": "Filipinas L. Demaosa",
   "SBHS-G7LAC-2026-008": "Sofia M. Toraldo"
 };
 
-const urlParams = new URLSearchParams(window.location.search);
-const id = urlParams.get("id");
+const id = new URLSearchParams(window.location.search).get("id");
 
-const result = document.getElementById("result");
+const r = document.getElementById("result");
 
-if (id && certs[id]) {
-  result.innerHTML = `
-    <p class="valid">✔ CERTIFICATE VERIFIED</p>
+if (certs[id]) {
+  r.innerHTML = `
+    <p class="valid">✔ VERIFIED</p>
     <div class="info">
-      <p><b>Certificate ID:</b> ${id}</p>
+      <p><b>ID:</b> ${id}</p>
       <p><b>Name:</b> ${certs[id]}</p>
       <p><b>School:</b> San Bartolome High School</p>
-      <p><b>Department:</b> English Department - Grade 7 1st LAC Session</p>
-      <p><b>Topic:</b> ILAW Lesson Plan Framework and Its Application in DepEd Lesson Planning</p>
+      <p><b>Topic:</b> ILAW Lesson Plan Framework</p>
       <p><b>Speaker:</b> Mrs. Imelda A. Dorado</p>
       <p><b>Date:</b> July 3, 2026</p>
       <p><b>Issued by:</b> Jhonel V. David</p>
     </div>
   `;
 } else {
-  result.innerHTML = `
-    <p class="invalid">✘ INVALID CERTIFICATE</p>
-    <p>No record found in the system.</p>
-  `;
+  r.innerHTML = `<p class="invalid">INVALID CERTIFICATE</p>`;
 }
 </script>
 
